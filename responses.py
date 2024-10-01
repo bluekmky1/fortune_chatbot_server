@@ -62,7 +62,6 @@ class ResponseTemplates:
         }
 
     def fortune_and_tasks(self, fortune_and_tasks: dict):
-        print(fortune_and_tasks)
         return {
             "version": self.version,
             "template": {

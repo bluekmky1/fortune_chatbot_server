@@ -33,7 +33,6 @@ def get_fortune():
 @app.post("/save/userInfo")
 def save_user_field(input_data: Dict[str, Any]):
     user_id = input_data['userRequest']['user']['id']
-    print(user_id)
 
     # 사용자 데이터 조회
     user_data = get_user_data(user_id)
@@ -51,7 +50,6 @@ def save_user_field(input_data: Dict[str, Any]):
 def get_fortune(input_data: Dict[str, Any]):
     user_id = input_data['userRequest']['user']['id']
     fortune_and_tasks = check_and_update_fortune(user_id)
-    print(fortune_and_tasks)
     if fortune_and_tasks:
         return response_templates.fortune_and_tasks(fortune_and_tasks)
     # else:
