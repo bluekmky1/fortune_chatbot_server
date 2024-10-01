@@ -43,6 +43,7 @@ def update_fortune_and_tasks(user_id, fortune_and_tasks):
     # 새로운 운세 추가
     fortune_response = supabase.table('fortune').insert({
         "fortune": fortune_and_tasks['todayFortune'],
+        "createdAt": datetime.now().isoformat()
     }).execute()
 
     new_fortune_id = fortune_response.data[0]['id']
@@ -78,7 +79,9 @@ def check_and_update_fortune(user_id):
 
     fortune_date = parse(fortune_data['createdAt'])
     today = datetime.now()
-
+    print(fortune_date.date())
+    print((today - timedelta(days=1)).date())
+    print(fortune_date.date() == (today - timedelta(days=1)).date())
     if fortune_date.date() == (today - timedelta(days=1)).date():
         # 운세가 어제의 것이라면 새로 생성
         new_fortune_and_tasks = gpt_fortune_and_tasks(user_data)
